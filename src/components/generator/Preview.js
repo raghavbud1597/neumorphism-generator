@@ -2,16 +2,34 @@ import React from 'react'
 import styled from 'styled-components';
 
 const PreviewBox = styled.div`
-    height: 120px;
-    width: 120px;
-    border-radius: 100px;
-    background: #3f464a;
-    box-shadow: inset 28px 28px 56px #2b3033, 
-                inset -28px -28px 56px #535c61;
+    background: ${(props) => props.backgroundColor};
+    border-radius: ${(props) => `${props.borderRadius}px`};
+    box-shadow: inset 18px 18px 56px #56958d, inset -18px -18px 56px #86e9dd;
+    height: ${(props) => `${props.size}px`};
+    width: ${(props) => `${props.size}px`};
 `;
 
-export default function Preview() {
+const PreviewWrapper = styled.div`
+    align-items: center;
+    display: flex;
+    height: 550px;
+    justify-content: center;
+    margin: 40px;
+    width: 550px;
+`;
+
+export default  ({
+    backgroundColor,
+    borderRadius,
+    size,
+}) => {
     return (
-        <PreviewBox/>
+        <PreviewWrapper>
+            <PreviewBox 
+                backgroundColor={backgroundColor} 
+                size={size}
+                borderRadius={borderRadius}
+            />
+        </PreviewWrapper>
     )
 }
