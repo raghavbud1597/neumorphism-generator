@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const PreviewBox = styled.div`
     background: ${(props) => props.backgroundColor};
     border-radius: ${(props) => `${props.borderRadius}px`};
-    box-shadow: inset 18px 18px 56px #56958d, inset -18px -18px 56px #86e9dd;
+    box-shadow: ${(props) => ` ${props.distance}px ${props.distance}px ${props.blur}px ${props.darkColor}, ${props.distance}px ${props.distance}px ${props.blur}px ${props.lightColor}`};
     height: ${(props) => `${props.size}px`};
     width: ${(props) => `${props.size}px`};
 `;
@@ -22,6 +22,10 @@ export default  ({
     backgroundColor,
     borderRadius,
     size,
+    distance,
+    lightColor,
+    darkColor,
+    blur
 }) => {
     return (
         <PreviewWrapper>
@@ -29,6 +33,10 @@ export default  ({
                 backgroundColor={backgroundColor} 
                 size={size}
                 borderRadius={borderRadius}
+                blur={blur}
+                distance={distance}
+                lightColor={lightColor.hex()}
+                darkColor={darkColor.hex()}
             />
         </PreviewWrapper>
     )

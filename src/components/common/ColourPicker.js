@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components'
 import { Flex } from '../../styling/styled' 
+import Color from 'color'
 
 const ColorBox = styled.div`
     border: 2px solid #00334e;
@@ -28,7 +29,10 @@ const Popover = styled.div`
 
 export default ({
     backgroundColor,
-    setBackgroundColor
+    setBackgroundColor,
+    intensity,
+    setLightColour,
+    setDarkColor
 }) => {
     const [isColorPickerVisible, setColorPickerVisibility] = useState(false);
 
@@ -44,6 +48,8 @@ export default ({
                         color={ backgroundColor }
                         onChangeComplete={ (color) =>{
                             setBackgroundColor(`${color.hex}`);
+                            setLightColour(Color(color.hex).lighten(intensity));
+                            setDarkColor(Color(color.hex).darken(intensity));
                         }}
                     />
                     </Popover>
