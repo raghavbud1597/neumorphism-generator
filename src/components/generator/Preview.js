@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
+import Lightbulb from '../images/Lightbulb.svg'
+import GlowingBulb from '../images/GlowingBulb.svg'
 
 const PreviewBox = styled.div`
     background: ${(props) => props.backgroundColor};
