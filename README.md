@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Neumorphism Generator
 
-## Available Scripts
+A React app for experimenting with neumorphic colours, dimensions, and shadows.
 
-In the project directory, you can run:
+## Getting started
 
-### `yarn start`
+Use Node.js 24.15 or newer in the Node 24 release line (`nvm install` and
+`nvm use` read `.nvmrc`). Node 22.22.2+ and Node 26+ are also supported.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+npm ci
+npm start
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Open the local URL printed by Vite, usually http://localhost:5173.
 
-### `yarn test`
+## Commands
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Command | Purpose |
+| --- | --- |
+| `npm start` / `npm run dev` | Start Vite with hot module replacement |
+| `npm run build` | Build the production app into `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Check JavaScript, React Hooks, and Fast Refresh rules |
+| `npm test` | Run component tests once |
+| `npm run test:watch` | Run tests in watch mode |
 
-### `yarn build`
+## Development
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app uses React's `createRoot` API and Strict Mode. Generator settings have
+one source of truth; shadow colours are calculated from the selected colour
+and intensity. Changing distance also sets blur to twice the distance, and blur
+can then be adjusted independently. Controls have accessible labels and use
+numeric values for range settings. The colour control uses the browser's native
+picker.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Styling uses styled-components transient props (`$` prefix) to keep presentation
+values out of DOM attributes. JSX components use the `.jsx` extension.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Vite replaces Create React App, and Vitest plus Testing Library test the app's
+behaviour. Test and build tooling belong in `devDependencies`.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Use npm and commit `package-lock.json` when dependencies change. Dependencies,
+build output, coverage, and local environment files are ignored by Git.
+Install dependencies with `npm ci` after cloning; `node_modules` is not tracked.
