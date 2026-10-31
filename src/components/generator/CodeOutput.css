@@ -1,0 +1,120 @@
+.code-panel pre {
+  outline-offset: 4px;
+  margin: 0;
+  padding: 10px 12px;
+  background: #f6f8f2;
+  color: #5e7050;
+  font-size: 11px;
+  line-height: 1.5;
+  border-radius: 8px;
+  border: 1px solid #edf0e7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+.copy-error {
+  display: block;
+  color: #a1412d;
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 7px;
+}
+
+.code-panel {
+  grid-area: code;
+  padding: 15px 18px 13px;
+  min-width: 0;
+}
+
+.code-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.code-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+}
+
+.code-heading h2 > span {
+  color: #89947b;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border: 1px solid #dde4d5;
+  border-radius: 5px;
+  background: #f0f4eb;
+  color: #5c704a;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.copy-button:hover {
+  background: #e4ecd9;
+}
+
+.copy-button svg {
+  width: 12px;
+  height: 12px;
+}
+
+.code-note {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  color: #7d8475;
+  font-size: 9px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.code-note code {
+  color: #5c6c4e;
+}
+
+.inline-swatch {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #00000018;
+  border-radius: 2px;
+  margin-left: 2px;
+  background: var(--swatch-colour);
+}
+
+@media (max-width: 650px) {
+  .code-panel {
+    width: 100%;
+    position: static;
+    padding: 18px 20px;
+  }
+
+  .code-heading h2 {
+    font-size: 13px;
+  }
+
+  .code-panel pre {
+    font-size: 11px;
+  }
+
+  .code-note {
+    font-size: 10px;
+  }
+
+  .copy-button {
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+}

@@ -1,0 +1,51 @@
+.surface-section {
+  border-top: 1px solid #eff0ea;
+  padding-top: 14px;
+  margin-top: 15px;
+}
+
+.surface-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.surface-options button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid #e6e9df;
+  background: #fafbf8;
+  border-radius: 7px;
+  padding: 7px 0 8px;
+  font-size: 9px;
+  color: #737c66;
+  text-transform: capitalize;
+}
+
+.surface-options button svg {
+  height: 21px;
+  width: 35px;
+  stroke-width: 1.7;
+}
+
+.surface-options button:hover {
+  border-color: #b8c1ac;
+  background: #f0f3eb;
+}
+
+.surface-options button[aria-pressed='true'] {
+  background: #edf1e7;
+  border-color: #a7b597;
+  color: #465e31;
+  box-shadow: 0 0 0 1px #a7b59715;
+}
+
+@media (max-width: 650px) {
+  .surface-options button {
+    padding: 10px 0;
+    font-size: 10px;
+  }
+}

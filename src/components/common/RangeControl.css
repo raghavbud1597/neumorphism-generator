@@ -1,0 +1,108 @@
+.range-control {
+  display: grid;
+  grid-template-columns: 75px minmax(0, 1fr) 51px;
+  align-items: center;
+  column-gap: 12px;
+  margin-top: 9px;
+}
+
+.range-label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.range-label label {
+  font-size: 11px;
+  color: #71776b;
+}
+
+.range-control input[type='range'] {
+  width: 100%;
+  margin: 0;
+  height: 4px;
+  border-radius: 10px;
+  appearance: none;
+  background: linear-gradient(to right, #8a9877 var(--range-progress), #e8ebe2 var(--range-progress));
+  cursor: pointer;
+}
+
+.range-control input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  background: #71835b;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #71835b, 0 1px 3px #172a1820;
+  border-radius: 50%;
+}
+
+.range-control input[type='range']::-moz-range-thumb {
+  height: 9px;
+  width: 9px;
+  background: #71835b;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #71835b;
+  border-radius: 50%;
+}
+
+.number-field {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e7e9e1;
+  background: #fafbf8;
+  border-radius: 5px;
+  height: 26px;
+  padding-right: 5px;
+}
+
+.number-field input {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  border: 0;
+  padding: 5px 2px;
+  color: #68715c;
+  background: transparent;
+  border-radius: 5px;
+  appearance: textfield;
+}
+
+.number-field input::-webkit-inner-spin-button,
+.number-field input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.number-field span {
+  font-size: 9px;
+  color: #7f8774;
+}
+
+@media (max-width: 900px) {
+  .range-control {
+    column-gap: 8px;
+    grid-template-columns: 75px minmax(0, 1fr) 44px;
+  }
+}
+
+@media (max-width: 650px) {
+  .range-control {
+    grid-template-columns: 80px minmax(0, 1fr) 53px;
+    column-gap: 13px;
+    margin-top: 15px;
+  }
+
+  .range-label label {
+    font-size: 12px;
+  }
+
+  .number-field {
+    height: 30px;
+  }
+
+  .number-field input {
+    font-size: 11px;
+  }
+}

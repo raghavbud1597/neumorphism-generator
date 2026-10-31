@@ -1,0 +1,75 @@
+.page-intro h1 {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 650;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+}
+
+.page-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 0 26px;
+}
+
+.page-intro h1 > span {
+  color: #899975;
+}
+
+.intro-description {
+  font-size: 13px;
+  color: #7b7f76;
+  margin-top: 9px;
+}
+
+.reset-button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dfe3d9;
+  background: transparent;
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  color: #62695b;
+}
+
+.reset-button:hover {
+  background: #ecefe6;
+  border-color: #c6cebc;
+}
+
+@media (max-width: 1100px) {
+  .page-intro h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .page-intro {
+    padding: 27px 0 23px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 17px;
+  }
+
+  .page-intro h1 {
+    max-width: 340px;
+    font-size: 29px;
+    line-height: 1.24;
+    letter-spacing: -1px;
+  }
+
+  .intro-description {
+    font-size: 11px;
+  }
+
+  .reset-button {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}

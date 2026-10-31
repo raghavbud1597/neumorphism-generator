@@ -1,0 +1,59 @@
+.settings-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: 18px;
+  height: 18px;
+  color: #93998c;
+}
+
+.configuration {
+  padding: 21px 22px 20px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.control-section {
+  margin-top: 15px;
+  padding-top: 14px;
+  border-top: 1px solid #eff0ea;
+}
+
+.radius-actions {
+  display: flex;
+}
+
+.radius-actions button {
+  width: 17px;
+  height: 20px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  line-height: 1;
+  font-size: 17px;
+  color: #727c65;
+}
+
+.radius-actions button:hover {
+  color: #28351b;
+}
+
+@media (max-width: 900px) {
+  .configuration {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .configuration {
+    width: 100%;
+    padding: 22px;
+  }
+}

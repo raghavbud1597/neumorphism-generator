@@ -1,0 +1,78 @@
+.light-button {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #ffffff18;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.42;
+  z-index: 1;
+}
+
+.light-button svg {
+  height: 18px;
+  width: 18px;
+}
+
+.light-button:hover {
+  opacity: 0.85;
+  background: #ffffff28;
+}
+
+.light-button[aria-pressed='true'] {
+  opacity: 1;
+  background: #f4edc7;
+  color: #7b6b33;
+  border-color: #cbbf83;
+  box-shadow: 0 0 0 5px #f9f3d93b;
+}
+
+.light-button.top-left {
+  top: 67px;
+  left: 25px;
+}
+
+.light-button.top-right {
+  top: 67px;
+  right: 25px;
+}
+
+.light-button.bottom-left {
+  bottom: 88px;
+  left: 25px;
+}
+
+.light-button.bottom-right {
+  bottom: 88px;
+  right: 25px;
+}
+
+@media (max-width: 650px) {
+  .light-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .light-button.top-left {
+    left: 18px;
+    top: 57px;
+  }
+
+  .light-button.top-right {
+    right: 18px;
+    top: 57px;
+  }
+
+  .light-button.bottom-left {
+    left: 18px;
+    bottom: 77px;
+  }
+
+  .light-button.bottom-right {
+    right: 18px;
+    bottom: 77px;
+  }
+}

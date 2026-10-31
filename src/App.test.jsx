@@ -1,102 +1,35 @@
-import { StrictMode } from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from '@jest/globals';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from './App.jsx';
 
-function renderGenerator() {
-  render(
-    <StrictMode>
-      <App />
-    </StrictMode>,
-  );
-  return screen.getByRole('img', { name: 'Neumorphic shape' });
-}
+beforeEach(() => window.history.replaceState(null, '', '/'));
 
-describe('Neumorphism Generator', () => {
-  it('renders labelled controls and opposing light and dark shadows', () => {
-    const preview = renderGenerator();
+describe('App', () => {
+  it('composes the complete creator inside one main landmark', () => {
+    render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Neumorphism Generator' })).toBeInTheDocument();
-    expect(screen.getAllByRole('slider')).toHaveLength(5);
-    expect(screen.getByLabelText('Pick a Colour')).toHaveValue('#6ebfb5');
-    expect(preview).toHaveStyle({ width: '300px', height: '300px', borderRadius: '63px' });
-    expect(getComputedStyle(preview).boxShadow).toMatch(/^20px 20px 40px .+,\s*-20px -20px 40px /);
+    expect(screen.getAllByRole('main')).toHaveLength(1);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Generate neumorphic designs.');
+    expect(screen.getByRole('region', { name: 'Preview' })).toBeInTheDocument();
+    expect(screen.getByRole('complementary', { name: 'Design editor' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Your CSS' })).toBeInTheDocument();
   });
 
-  it('updates dimensions through keyboard-accessible controls', async () => {
-    const user = userEvent.setup();
-    const preview = renderGenerator();
-    const size = screen.getByRole('slider', { name: 'Size' });
-
-    await user.tab();
-    expect(screen.getByLabelText('Pick a Colour')).toHaveFocus();
-    await user.tab();
-    expect(size).toHaveFocus();
-
-    fireEvent.change(size, { target: { value: '400' } });
-    fireEvent.change(screen.getByRole('slider', { name: 'Border Radius' }), {
-      target: { value: '100' },
-    });
-
-    expect(preview).toHaveStyle({ width: '400px', height: '400px', borderRadius: '100px' });
+  it('renders the library on its own URL with shared navigation and footer', () => {
+    window.history.replaceState(null, '', '/components/');
+    render(<App />);
+    expect(screen.getAllByRole('main')).toHaveLength(1);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('A softer starting point.');
+    expect(within(screen.getByRole('navigation', { name: 'Main navigation' })).getByRole('link', { name: /Components/ })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('contentinfo')).toHaveTextContent('All rights reserved');
+    expect(document.title).toBe('Component Library · Neumorphism');
   });
 
-  it('updates blur with distance while allowing a custom blur', () => {
-    const preview = renderGenerator();
-
-    fireEvent.change(screen.getByRole('slider', { name: 'Distance' }), {
-      target: { value: '35' },
-    });
-
-    expect(screen.getByRole('slider', { name: 'Blur' })).toHaveValue('70');
-    expect(getComputedStyle(preview).boxShadow).toMatch(/^35px 35px 70px .+,\s*-35px -35px 70px /);
-
-    fireEvent.change(screen.getByRole('slider', { name: 'Blur' }), {
-      target: { value: '25' },
-    });
-
-    expect(screen.getByRole('slider', { name: 'Distance' })).toHaveValue('35');
-    expect(getComputedStyle(preview).boxShadow).toMatch(/^35px 35px 25px .+,\s*-35px -35px 25px /);
-  });
-
-  it('keeps shadows in sync when intensity and colour change', () => {
-    const preview = renderGenerator();
-    const initialShadow = getComputedStyle(preview).boxShadow;
-
-    fireEvent.change(screen.getByRole('slider', { name: 'Intensity' }), {
-      target: { value: '0.3' },
-    });
-
-    const intensifiedShadow = getComputedStyle(preview).boxShadow;
-    expect(intensifiedShadow).not.toBe(initialShadow);
-
-    fireEvent.change(screen.getByLabelText('Pick a Colour'), {
-      target: { value: '#336699' },
-    });
-
-    expect(preview).toHaveStyle({ backgroundColor: '#336699' });
-    expect(screen.getByRole('main')).toHaveStyle({ backgroundColor: '#336699' });
-    expect(getComputedStyle(preview).boxShadow).not.toBe(intensifiedShadow);
-    expect(screen.getByRole('slider', { name: 'Intensity' })).toHaveValue('0.3');
-  });
-
-  it('keeps styling props out of the DOM', () => {
-    const preview = renderGenerator();
-    const elements = [
-      preview,
-      screen.getByRole('main'),
-      screen.getByRole('region', { name: 'Neumorphism Generator' }),
-    ];
-    const attributes = [
-      'backgroundColor', 'lightColor', 'darkColor', 'borderRadius',
-      'size', 'distance', 'blur', 'settings',
-    ];
-
-    for (const element of elements) {
-      for (const attribute of attributes) {
-        expect(element).not.toHaveAttribute(attribute);
-      }
-    }
+  it('skips to the main content without changing the generator colour hash', () => {
+    window.history.replaceState(null, '', '/#aabbcc');
+    render(<App />);
+    fireEvent.click(screen.getByRole('link', { name: 'Skip to content' }));
+    expect(screen.getByRole('main')).toHaveFocus();
+    expect(window.location.hash).toBe('#aabbcc');
   });
 });
